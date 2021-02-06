@@ -13,7 +13,7 @@ import { Funcionario } from 'src/app/shared/class/Funcionario';
 export class ControlPanelComponent implements OnInit {
 
   funcionarioForm = new FormGroup({
-    id: new FormControl('', [Validators.required],),
+    id: new FormControl(''),
     nome: new FormControl('', [Validators.required]),
     cargo: new FormControl('', [Validators.required]),
     idade: new FormControl('', [Validators.required])

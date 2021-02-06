@@ -21,7 +21,7 @@
         <div class="d-flex flex-row justify-content-around">
           <button id="deleteFuncionario" (click)="deleteFuncionario()">Delete</button>
           <button id="updateFuncionario" (click)="updateFuncionario()">Update</button>
-          <button id="createFuncionario" (click)="createFuncionario()">Create</button>
+          <button id="createFuncionario" (click)="createFuncionario()" [disabled]="!funcionarioForm.valid">Create</button>
         </div>
       </form>
     </div>
