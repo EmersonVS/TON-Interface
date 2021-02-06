@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  ipPublico: 'http://54.233.207.122:8084/',
+  ipPublico: 'http://18.231.136.22:8084/',
   endpoint: {
     auth: 'user/authenticate',
     funcionario: 'funcionario/',
