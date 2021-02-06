@@ -27,11 +27,15 @@ constructor(private tokenService: TokenService, private timeService : TimeServic
   }
 
   getToken() {
-    if(this.hasToken() && this.tokenValid()) {
-      return window.localStorage.getItem(this.storageKey);
+    //&& this.tokenValid()
+    if(this.hasToken()) {
+      const token = window.localStorage.getItem(this.storageKey);
+      if(token) {
+        return token;
+      }
     }
     this.removeToken();
-    return false;
+    return 'Token expirado';
   }
 
   removeToken() {
