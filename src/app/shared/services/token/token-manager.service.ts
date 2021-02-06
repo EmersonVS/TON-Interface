@@ -27,8 +27,7 @@ constructor(private tokenService: TokenService, private timeService : TimeServic
   }
 
   getToken() {
-    //&& this.tokenValid()
-    if(this.hasToken()) {
+    if(this.hasToken() && this.tokenValid()) {
       const token = window.localStorage.getItem(this.storageKey);
       if(token) {
         return token;
