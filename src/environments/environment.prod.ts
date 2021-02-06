@@ -1,12 +1,12 @@
 export const environment = {
   production: true,
-  ipPublico: 'http://54.233.207.122:8084',
+  ipPublico: 'http://54.233.207.122:8084/',
   endpoint: {
     auth: 'user/authenticate',
     funcionario: 'funcionario/',
     update: 'funcionario/',
     delete: 'funcionario/',
-    create: 'createfuncionario/',
+    create: 'funcionario/create',
     funcionarios: 'funcionario/all',
   }
 };
