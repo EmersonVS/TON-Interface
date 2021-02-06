@@ -1,0 +1,17 @@
+#welcome-header {
+    font-weight: 600 !important;
+}
+
+#mobile-login {
+    height: 100%;
+    background-image: url('../../../../assets/login/tonMobileLoginBackground.png'), linear-gradient(#127949, #093D25);
+    background-position: bottom;
+    background-repeat: no-repeat;
+}
+
+#mobile-login img{
+    padding: 2%;
+    margin-top: 10%;
+    max-width: 210px;
+    max-height: 150px;
+} 

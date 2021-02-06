@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import * as $ from 'jquery/dist/jquery.min.js';
+import { Component, Input, OnInit } from '@angular/core';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +8,9 @@ import * as $ from 'jquery/dist/jquery.min.js';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+  }
+
 
   ngOnInit() {
   }

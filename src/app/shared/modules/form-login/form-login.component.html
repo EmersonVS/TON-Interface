@@ -1,0 +1,8 @@
+<div class="d-flex flex-column">
+  <h1 id="welcome-header" class="white-font desktop-display">Bem-vindo!</h1>
+  <form class="d-flex flex-column w-100 align-items-center" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <input type="text" placeholder="Usuário" formControlName="username">
+    <input type="password" class="mt-3" placeholder="Senha" formControlName="password">
+    <button class="white" type="submit" [disabled]="!loginForm.valid">Acessar</button>
+  </form>
+</div>

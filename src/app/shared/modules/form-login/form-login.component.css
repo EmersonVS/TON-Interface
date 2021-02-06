@@ -1,0 +1,56 @@
+#welcome-header {
+    align-self: center;
+    font-weight: 600;
+}    
+
+input {
+    padding-left: 1em;
+    outline: none;
+    border: none;
+    border-radius: 16px;
+    width: 80%;
+    height: 2.4em;
+}
+
+form {
+    margin-top: 5em;
+}
+
+button {
+    margin-top: 5em;
+    outline: none;
+    border: none;
+    border-radius: 30px;
+    width: 10em;
+    height: 2.4em;
+}
+
+@media (min-width: 576px) {
+    
+}
+
+@media (min-width: 768px) {
+    
+}
+
+@media (min-width: 992px) {
+}
+
+@media (min-width: 1200px) { 
+    
+    input {
+        width: 60%;
+    }
+
+    #welcome-header {
+        font-size: 60px;
+    }   
+
+    form {
+        margin-top: 5em;
+    }   
+
+    button {
+        margin-top: 5em;
+    }
+}
