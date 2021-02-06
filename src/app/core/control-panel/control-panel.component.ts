@@ -26,8 +26,8 @@ export class ControlPanelComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.enableFuncionarioCreation();
     this.funcionarioForm.disable();
+    this.enableFuncionarioCreation();
   }
 
   updateList() {
