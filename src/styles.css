@@ -1,1 +1,84 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+}
+
+html, body {
+    height: 100%;
+}
+
+.dark-green {
+    background-color: #127949;
+}
+
+.green {
+    background-color: #17d12a;
+}
+
+.light-green {
+    background-color: #0fcc7d;
+}
+
+.op-green {
+    background-color: #7CDA86;
+}
+
+.op-light-green {
+    background-color: #A9BBAB;
+}
+
+.white {
+    background-color: #ffffff;
+}
+
+.white-font {
+    color: white;
+}
+
+.black {
+    background-color: #000000;
+}
+
+.fill { 
+    min-height: 100% !important;
+    min-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.desktop-display {
+    display: none !important;    
+}
+
+.mobile-display {
+    display: block !important;
+}
+
+.self-center {
+    align-self: center;
+}
+
+@media (min-width: 576px) {
+    
+}
+
+@media (min-width: 768px) {
+    
+}
+
+@media (min-width: 992px) {
+    
+    .desktop-display {
+        display: flex !important;    
+    }
+    
+    .mobile-display {
+        display: none !important;
+    }
+    
+}
+
+@media (min-width: 1200px) { 
+    
+
+}

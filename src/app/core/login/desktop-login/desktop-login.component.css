@@ -1,0 +1,26 @@
+#welcome-header {
+    font-weight: 600 !important;
+}
+
+#welcome-header {
+    font-size: 60px !important;
+}    
+
+#login-left-desktop {
+    width: 47% !important;
+}
+
+#login-left-desktop img {
+    padding: 4% !important;
+}
+
+#login-right-desktop {
+    width: 53% !important;
+}
+
+#login-right-logo {
+    align-self: flex-end;
+    padding: 3%;
+    max-width: 210px;
+    max-height: 150px;
+}
