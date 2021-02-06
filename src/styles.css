@@ -1,1 +1,32 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+}
+
+.dark-green {
+    background-color: #127949;
+}
+
+.green {
+    background-color: #17d12a;
+}
+
+.light-green {
+    background-color: #0fcc7d;
+}
+
+.op-green {
+    background-color: #7CDA86;
+}
+
+.op-light-green {
+    background-color: #A9BBAB;
+}
+
+.white {
+    background-color: #ffffff;
+}
+
+.black {
+    background-color: #000000;
+}
