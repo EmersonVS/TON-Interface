@@ -1,0 +1,29 @@
+<div id="control-panel-funcionario" class="fill dark-green d-flex">
+  <div>
+    <h1>Funcionários</h1>
+    <button class="text-center w-100" (click)="enableFuncionarioCreation()">Novo funcionário</button>
+    <ul *ngIf="funcionarios.length > 0" class="list-group" id="list-tab" role="tablist">
+      <li *ngFor="let funcionario of funcionarios; let i = index" class="text-center w-100" (click)="selectFuncionario(i)">Matrícula: {{funcionario.id}} - {{funcionario.nome}}</li>
+    </ul>
+  </div>
+  <div>
+    <div class="d-flex flex-column">
+      <h1>Painel de controle</h1>
+      <form class="d-flex flex-column" [formGroup]="funcionarioForm">
+        <label>Id</label>
+        <input formControlName="id">
+        <label>Nome</label>
+        <input formControlName="nome">
+        <label>Cargo</label>
+        <input formControlName="cargo">
+        <label>Idade</label>
+        <input formControlName="idade">
+        <div class="d-flex flex-row justify-content-around">
+          <button id="deleteFuncionario" (click)="deleteFuncionario()">Delete</button>
+          <button id="updateFuncionario" (click)="updateFuncionario()">Update</button>
+          <button id="createFuncionario" (click)="createFuncionario()">Create</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

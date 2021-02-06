@@ -1,0 +1,37 @@
+#control-panel-funcionario {
+    align-items: center;
+    flex-direction: column;
+}
+
+ul {
+    list-style-type: none;
+}
+
+li {
+    background-color: white;
+    margin: 1%;
+    border-radius: 1em;
+    border: solid black 1px;
+}
+
+@media (min-width: 576px) {
+    
+}
+
+@media (min-width: 768px) {
+    
+}
+
+@media (min-width: 992px) {
+
+}
+
+@media (min-width: 1200px) { 
+
+    #control-panel-funcionario {
+        padding-top: 3% !important;
+        align-items: baseline;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+}

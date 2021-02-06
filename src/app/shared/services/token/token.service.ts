@@ -12,7 +12,7 @@ export class TokenService {
 constructor(private http:HttpClient) { }
 
   tokenRequest(user : User) {
-    return this.http.post<TokenResponse>(`${environment.ipPublico}/${ environment.endpoint.auth}`, user);
+    return this.http.post<TokenResponse>(`${environment.ipPublico}${ environment.endpoint.auth}`, user);
   }
 
 }
