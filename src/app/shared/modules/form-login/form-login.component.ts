@@ -19,7 +19,7 @@ export class FormLoginComponent implements OnInit {
   })
 
   constructor(private library: FaIconLibrary, private tokenManagerService: TokenManagerService, private tokenService: TokenService) {
-    library.addIcons(faUser, faLock)
+    this.library.addIcons(faUser, faLock)
   }
 
   ngOnInit() {
