@@ -82,37 +82,36 @@ export class ControlPanelComponent implements OnInit {
     const newFucionario = new Funcionario(this.funcionarioForm);
     this.funcionarioService.createFuncionario(newFucionario).subscribe(funcionarioResponse => {
       this.updateList();
-      this.clearForm();
+      this.enableFuncionarioCreation();
     })
   }
 
   deleteFuncionario() {
-    const funcionarioId = this.funcionarioForm.controls['id'].value;
+    const funcionarioId = this.getFuncionarioId();
     this.funcionarioService.deleteFuncionario(funcionarioId).subscribe(funcionarioResponse => {
       this.updateList();
-      this.clearForm();
+      this.enableFuncionarioCreation();
     });
   }
 
   updateFuncionario() {
     const updatedFucionario = new Funcionario(this.funcionarioForm);
-    const funcionarioId = this.funcionarioForm.controls['id'].value;
+    const funcionarioId = this.getFuncionarioId();
     this.funcionarioService.updateFuncionario(funcionarioId, updatedFucionario).subscribe(funcionarioResponse => {
       this.updateList();
-      this.clearForm();
+      this.enableFuncionarioCreation();
     });
   }
 
   customFormState(shouldEnable: boolean) {
-    if (shouldEnable) {
-      this.funcionarioForm.controls['nome'].enable();
-      this.funcionarioForm.controls['cargo'].enable();
-      this.funcionarioForm.controls['idade'].enable();
-    } else {
-      this.funcionarioForm.controls['nome'].disable();
-      this.funcionarioForm.controls['cargo'].disable();
-      this.funcionarioForm.controls['idade'].disable();
-    }
+    const controls = ['nome', 'cargo', 'idade']
+    controls.forEach(control => {
+      shouldEnable ? this.funcionarioForm.controls[control].enable() : this.funcionarioForm.controls[control].disable();
+    })
+  }
+
+  getFuncionarioId() {
+    return this.funcionarioForm.controls['id'].value;
   }
 
 }

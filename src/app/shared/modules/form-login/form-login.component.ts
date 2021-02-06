@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { faLock, faUser } from '@fortawesome/free-solid-svg-icons';
 import { User } from '../../class/User';
@@ -18,7 +19,7 @@ export class FormLoginComponent implements OnInit {
     password: new FormControl('', [Validators.required, Validators.min(5)])
   })
 
-  constructor(private library: FaIconLibrary, private tokenManagerService: TokenManagerService, private tokenService: TokenService) {
+  constructor(private library: FaIconLibrary, private tokenManagerService: TokenManagerService, private tokenService: TokenService, private router: Router) {
     this.library.addIcons(faUser, faLock)
   }
 
@@ -29,6 +30,7 @@ export class FormLoginComponent implements OnInit {
     const loginUser = new User(this.loginForm);
     this.tokenService.tokenRequest(loginUser).subscribe( tokenResponse => {
       this.tokenManagerService.setToken(tokenResponse);
+      this.router.navigate(['/control'])
     })
   }
 
