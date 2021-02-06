@@ -1,0 +1,25 @@
+#welcome-header {
+    font-weight: 600 !important;
+}
+
+@media (min-width: 576px) {
+    
+}
+
+@media (min-width: 768px) {
+    
+}
+
+@media (min-width: 992px) {
+
+}
+
+@media (min-width: 1200px) { 
+    #login-left-desktop {
+        width: 40% !important;
+    }
+
+    #login-right-desktop {
+        width: 60% !important;
+    }
+}
