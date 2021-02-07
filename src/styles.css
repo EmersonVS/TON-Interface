@@ -39,6 +39,10 @@ html, body {
     background-color: #000000;
 }
 
+.black-font {
+    color: #000000;
+}
+
 .fill { 
     min-height: 100% !important;
     min-width: 100% !important;
@@ -52,6 +56,10 @@ html, body {
 
 .mobile-display {
     display: block !important;
+}
+
+.device-direction {
+    flex-direction: column;
 }
 
 .self-center {
@@ -74,6 +82,10 @@ html, body {
     
     .mobile-display {
         display: none !important;
+    }
+
+    .device-direction {
+        flex-direction: row;
     }
     
 }

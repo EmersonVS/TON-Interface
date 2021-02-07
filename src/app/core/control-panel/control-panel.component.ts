@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FuncionarioService } from 'src/app/shared/services/funcionario/funcionario.service';
-import * as $ from 'jquery';
 import { IFuncionario } from 'src/app/shared/interfaces/IFuncionario';
 import { Funcionario } from 'src/app/shared/class/Funcionario';
+import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
+import { faArrowLeft, faArrowRight, faInfoCircle, faList, faSortDown, faTrashAlt, faUserEdit, faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-control-panel',
@@ -13,105 +15,75 @@ import { Funcionario } from 'src/app/shared/class/Funcionario';
 export class ControlPanelComponent implements OnInit {
 
   funcionarioForm = new FormGroup({
-    id: new FormControl(''),
     nome: new FormControl('', [Validators.required]),
     cargo: new FormControl('', [Validators.required]),
     idade: new FormControl('', [Validators.required])
   })
-  funcionarios: Array<IFuncionario> = [];
-  selectedFuncionario: number = -1;
+  newFuncionarioForm = new FormGroup({
+    nome: new FormControl('', [Validators.required]),
+    cargo: new FormControl('', [Validators.required]),
+    idade: new FormControl('', [Validators.required])
+  })
+  funcionarios: IFuncionario[] = [];
+  selectedFuncionario: IFuncionario | undefined;
 
-  constructor(private funcionarioService: FuncionarioService) {
+  constructor(private funcionarioService: FuncionarioService, private library: FaIconLibrary) {
+    this.library.addIcons(faArrowLeft, faArrowRight, faTrashAlt, faUserEdit, faInfoCircle, faUserPlus, faList, faSortDown);
     this.updateList();
   }
 
   ngOnInit() {
-    this.funcionarioForm.disable();
-    this.enableFuncionarioCreation();
   }
 
   updateList() {
-    this.funcionarios = [];
     this.funcionarioService.getFuncionarios().subscribe(funcionariosResponse => {
-      this.funcionarios.push(...funcionariosResponse)
+      this.funcionarios = [];
+      this.funcionarios.push(...funcionariosResponse);
     })
   }
 
-  enableFuncionarioCreation() {
-    this.clearForm();
-    this.changeButtonState('disabled');
-    this.customFormState(true);
-  }
-
-  clearForm() {
-    this.funcionarioForm.setValue(
-      {
-        id: '',
-        nome: '',
-        cargo: '',
-        idade: '',
-      }
-    );
-  }
-
   selectFuncionario(funcionarioId: number) {
-    this.changeButtonState('');
-    this.customFormState(true);
-    this.selectedFuncionario = funcionarioId;
+    this.funcionarioForm.disable();
+    this.selectedFuncionario = this.funcionarios?.filter(funcionario => funcionario.id === funcionarioId)[0];
     this.updateForm();
   }
 
   updateForm() {
-    this.funcionarioForm.setValue(
-      {
-        id: this.funcionarios[this.selectedFuncionario].id,
-        nome: this.funcionarios[this.selectedFuncionario].nome,
-        cargo: this.funcionarios[this.selectedFuncionario].cargo,
-        idade: this.funcionarios[this.selectedFuncionario].idade,
-      }
-    );
-  }
-
-  changeButtonState(state: string) {
-    $('#deleteFuncionario').prop('disabled', state);
-    $('#updateFuncionario').prop('disabled', state);
-    $('#createFuncionario').prop('disabled', !state);
+    if (this.selectedFuncionario) {
+      this.funcionarioForm.setValue(
+        {
+          nome: this.selectedFuncionario?.nome,
+          cargo: this.selectedFuncionario?.cargo,
+          idade: this.selectedFuncionario?.idade,
+        }
+      )
+    }
   }
 
   createFuncionario() {
-    const newFucionario = new Funcionario(this.funcionarioForm);
+    const newFucionario = new Funcionario(this.newFuncionarioForm);
     this.funcionarioService.createFuncionario(newFucionario).subscribe(funcionarioResponse => {
       this.updateList();
-      this.enableFuncionarioCreation();
     })
   }
 
-  deleteFuncionario() {
-    const funcionarioId = this.getFuncionarioId();
+  deleteFuncionario(funcionarioId: number) {
     this.funcionarioService.deleteFuncionario(funcionarioId).subscribe(funcionarioResponse => {
       this.updateList();
-      this.enableFuncionarioCreation();
     });
   }
 
-  updateFuncionario() {
+  updateFuncionario(funcionarioId: number) {
+    this.selectFuncionario(funcionarioId);
+    this.funcionarioForm.enable();
+  }
+
+  confirmUpdate(funcionarioId: number) {
     const updatedFucionario = new Funcionario(this.funcionarioForm);
-    const funcionarioId = this.getFuncionarioId();
     this.funcionarioService.updateFuncionario(funcionarioId, updatedFucionario).subscribe(funcionarioResponse => {
       this.updateList();
-      this.enableFuncionarioCreation();
+      this.selectFuncionario(-1);
     });
-  }
-
-  customFormState(shouldEnable: boolean) {
-    const controls = ['nome', 'cargo', 'idade']
-    controls.forEach(control => {
-      shouldEnable ? this.funcionarioForm.controls[control].enable() : this.funcionarioForm.controls[control].disable();
-    })
-  }
-
-  getFuncionarioId() {
-    return this.funcionarioForm.controls['id'].value;
   }
 
 }

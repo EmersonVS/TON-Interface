@@ -11,11 +11,11 @@ export class FuncionarioService {
 
   constructor(private http: HttpClient) { }
 
-  updateFuncionario(funcionarioId: string, updatedFuncionario: Funcionario) {
+  updateFuncionario(funcionarioId: number, updatedFuncionario: Funcionario) {
     return this.http.put<IFuncionario>(`${environment.ipPublico}${environment.endpoint.update}${funcionarioId}`, updatedFuncionario);
   }
 
-  deleteFuncionario(funcionarioId: string) {
+  deleteFuncionario(funcionarioId: number) {
     return this.http.delete<IFuncionario>(`${environment.ipPublico}${environment.endpoint.delete}${funcionarioId}`);
   }
 
@@ -27,7 +27,7 @@ export class FuncionarioService {
     return this.http.post(`${environment.ipPublico}${environment.endpoint.create}`, funcionario);
   }
 
-  getFuncionario(funcionarioId: string) {
+  getFuncionario(funcionarioId: number) {
     return this.http.get<IFuncionario>(`${environment.ipPublico}${environment.endpoint.funcionario}${funcionarioId}`);
   }
 

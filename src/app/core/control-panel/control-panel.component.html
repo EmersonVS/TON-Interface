@@ -1,29 +1,78 @@
-<div id="control-panel-funcionario" class="fill dark-green d-flex">
-  <div>
-    <h1>Funcionários </h1>
-    <button class="text-center w-100" (click)="enableFuncionarioCreation()">Novo funcionário</button>
-    <ul *ngIf="funcionarios.length > 0" class="list-group" id="list-tab" role="tablist">
-      <li *ngFor="let funcionario of funcionarios; let i = index" class="text-center w-100" (click)="selectFuncionario(i)">Matrícula: {{funcionario.id}} - {{funcionario.nome}}</li>
-    </ul>
-  </div>
-  <div>
-    <div class="d-flex flex-column">
-      <h1>Painel de controle</h1>
-      <form class="d-flex flex-column" [formGroup]="funcionarioForm">
-        <label>Id</label>
-        <input formControlName="id">
-        <label>Nome</label>
-        <input formControlName="nome">
-        <label>Cargo</label>
-        <input formControlName="cargo">
-        <label>Idade</label>
-        <input formControlName="idade">
-        <div class="d-flex flex-row justify-content-around">
-          <button id="deleteFuncionario" (click)="deleteFuncionario()">Delete</button>
-          <button id="updateFuncionario" (click)="updateFuncionario()">Update</button>
-          <button id="createFuncionario" (click)="createFuncionario()" [disabled]="!funcionarioForm.valid">Create</button>
+<div id="control-panel" class="fill">
+  <img id="control-logo" src="../../../assets/control/tonControlIcon.png">
+  <div id="control-panel-funcionario" class=" d-flex device-direction">
+    <div class="light-green d-flex flex-column text-center common-box">
+      <h2>Colaboradores</h2>
+      <div class="d-flex flex-row justify-content-between">
+        <input class="w-75" placeholder="Digite o nome do colaborador">
+        <button><fa-icon [icon]="['fas', 'list']"></fa-icon></button>
+        <button (click)="selectFuncionario(-1)"><fa-icon [icon]="['fas', 'user-plus']"></fa-icon></button>
+      </div>
+      <div id="funcionario-carousel-controls" class="carousel slide d-flex common-container" data-ride="carousel" data-interval="false">
+        <div class="carousel-inner w-100 common-card">
+          <div *ngFor="let funcionario of funcionarios; let i = index" [class]=" i ? 'carousel-item' : 'carousel-item active'">
+            <img src="../../../assets/control/defaultUserImage.png">
+            <p>{{funcionario.nome}}</p>
+            <p>{{funcionario.cargo}}</p>
+            <p>{{funcionario.idade}}</p>
+            <div class="d-flex justify-content-around">
+              <button><fa-icon (click)="selectFuncionario(funcionario.id)" [icon]="['fas', 'info-circle']"></fa-icon></button>
+              <button><fa-icon (click)="updateFuncionario(funcionario.id)" [icon]="['fas', 'user-edit']"></fa-icon></button>
+              <button><fa-icon (click)="deleteFuncionario(funcionario.id)" [icon]="['fas', 'trash-alt']"></fa-icon></button>
+            </div>
+          </div>
         </div>
-      </form>
+        <a class="carousel-control-prev h-75" href="#funcionario-carousel-controls" role="button" data-slide="prev" (click)="selectFuncionario(-1)">
+          <fa-icon class="carousel-icons" [icon]="['fas', 'arrow-left']" aria-hidden="true"></fa-icon>
+        </a>
+        <a class="carousel-control-next h-75" href="#funcionario-carousel-controls" role="button" data-slide="next" (click)="selectFuncionario(-1)">
+          <fa-icon class="carousel-icons" [icon]="['fas', 'arrow-right']" aria-hidden="true"></fa-icon>
+        </a>
+      </div>
+    </div>
+    <div class="d-flex flex-column light-green text-center mt-5 common-box">
+      <h2>Painel de Controle</h2>
+      <div *ngIf="selectedFuncionario" class="common-container">
+        <div class="common-card">
+          <p data-toggle="collapse" href="#funcionarioForm" role="button" aria-expanded="false" aria-controls="funcionarioForm"><fa-icon [icon]="['fas', 'sort-down']"></fa-icon> Informações</p>
+          <form class="collapse" id="funcionarioForm" [formGroup]="funcionarioForm">
+            <p>ID: {{selectedFuncionario.id}}</p>
+            <div class="form-group">
+              <label>Nome</label>
+              <input class="form-control text-center" formControlName="nome">
+            </div>
+            <div class="form-group">
+              <label>Cargo</label>
+              <input class="form-control text-center" formControlName="cargo">
+            </div>
+            <div class="form-group">
+              <label>Idade</label>
+              <input class="form-control text-center" formControlName="idade">
+            </div>
+          </form>
+          <button class="action-buttons" (click)="confirmUpdate(selectedFuncionario.id)" [disabled]="!funcionarioForm.enabled">Alterar</button>
+        </div>
+      </div>
+      <div *ngIf="!selectedFuncionario" class="common-container ">
+        <h3 class="pb-4">Cadastrar novo colaborador</h3>
+        <div class="common-card">
+          <form [formGroup]="newFuncionarioForm">
+            <div class="form-group">
+              <label>Nome</label>
+              <input class="form-control text-center" formControlName="nome">
+            </div>
+            <div class="form-group">
+              <label>Cargo</label>
+              <input class="form-control text-center" formControlName="cargo">
+            </div>
+            <div class="form-group">
+              <label>Idade</label>
+              <input class="form-control text-center" formControlName="idade">
+            </div>
+          </form>
+          <button class="action-buttons" (click)="createFuncionario()">Criar</button>
+        </div>
+      </div>
     </div>
   </div>
 </div>

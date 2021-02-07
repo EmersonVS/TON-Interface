@@ -1,17 +1,65 @@
-#control-panel-funcionario {
-    align-items: center;
+#control-panel {
+    padding: 1em !important;
+    background-image: url('../../../assets/control/tonControlMobileBackground.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    align-items: left;
     flex-direction: column;
 }
 
-ul {
-    list-style-type: none;
+input {
+    border: 1px solid black;
+    border-radius: 1em;
+    outline: none;
+    padding-left: 10px;
 }
 
-li {
+button {
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 1.5em;
+}
+
+#control-logo {
+    max-height: 4em;
+    max-width: 6em;
+    margin-bottom: 2em;
+}
+
+
+.common-box{
+    padding: 1em 1em .1em 1em;
+    width: 100% !important;
+    border-radius: 2em;
+}
+
+.common-container {
+    padding: 1em 0em 1em 0em;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.common-card {
     background-color: white;
-    margin: 1%;
+    padding: 0.2em;
     border-radius: 1em;
-    border: solid black 1px;
+    min-height: 5em;
+}
+
+.carousel-icons{
+    color:black;
+    font-size: 2.5em;
+}
+
+.action-buttons {
+    font-size: 1em;
+    width: 30%;
+    border: 2px solid black !important;
+    border-radius: 1em !important;
 }
 
 @media (min-width: 576px) {
@@ -28,10 +76,22 @@ li {
 
 @media (min-width: 1200px) { 
 
-    #control-panel-funcionario {
-        padding-top: 3% !important;
+    #control-panel {
         align-items: baseline;
         flex-direction: row;
         justify-content: space-around;
+        background-image: url('../../../assets/control/tonControlBackground.png');
+        background-size: cover;
+        background-position-y: -16em;
+    }
+
+    #control-panel-funcionario {
+        justify-content: space-between;
+    }
+
+    .common-box {
+        justify-content: space-between;
+        margin: 0 !important;
+        width: 49% !important;
     }
 }
