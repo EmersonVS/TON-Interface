@@ -90,7 +90,6 @@ button {
     }
 
     .common-box {
-        justify-content: space-between;
         margin: 0 !important;
         width: 49% !important;
     }
