@@ -1,27 +1,88 @@
-# TONInterface
+# TON-Interface
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.1.4.
+Projeto frontend desenvolvido com framework <i>Angular</i>, para teste técnico.
 
-## Development server
+## Sobre
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Projeto componentizado para consumir APIs. Funciona como interface para possibilitar ao usuário interagir com sistema de controle de funcionários. Possui dois módulos, um para autenticação e outro para operações.
 
-## Code scaffolding
+## Diretórios
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+#### Aplicação
 
-## Build
+    .
+    └── app
+        ├── core            # Módulos e componentes principais
+        └── shared          # Módulos, Componentes, serviços compartilhados pela aplicação
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Rotas
 
-## Running unit tests
+#### Login
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Na rota de login é necessário um usuário e senha válidos para que seja feita [autenticação](#guard-service), e possibilitar o uso das funcionalidades da aplicação. Autenticação gera um [token](#interceptor) que é usado nas operações realizadas.
 
-## Running end-to-end tests
+#### Painel de controle
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+As operações disponíveis se encontram no painel de controle. Para cada operação existe uma requisição que necessita de um token.
 
-## Further help
+## Serviços
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+#### Funcionario Service
+
+Responsável por carregar requisições para realizar operações com entidade funcionário.
+
+#### Time Service
+
+Responsável por administrar operações envolvendo tempo.
+
+#### Token Service
+
+Responsável por carregar requisição de autenticação.
+
+#### Token Manager
+
+Responsável por gerenciar armazenamento do token no local storage.
+
+#### Interceptor
+
+Responsável por adicionar um token ao cabeçalho de cada requisição.
+
+#### Guard Service
+
+Responsável por liberar acesso ao painel de controle.
+
+## Como rodar
+
+Necessário ter instalado <a href="https://nodejs.org/en/">Node|npm</a> e <a href="https://www.nginx.com/resources/wiki/start/topics/tutorials/install/">NGINX</a>.
+
+#### Local
+1. Clone o repositório
+2. Utilize o comando <i>npm install</i>
+3. Utilize o comando <i>npm start</i> para rodar localmente
+4. O projeto deve estar disponível no endereço <b>http://localhost:4200</b>
+
+#### Servidor
+1. Clone o repositório
+2. Utilize o comando <i>npm install</i>
+3. Utilize o comando <i>npm build</i>
+4. No diretório de instalação do NGINX acesse <b>/nginx/sites-available</b>
+5. Crie um arquivo de configuração com nome TON-Interface seguindo o padrão abaixo
+    ```shell
+    server {     
+        listen 80;      
+        listen [::]:80;      
+        server_name http://ton-interface.com;      
+        root /var/www/TON-Interface;   
+        server_tokens off;   
+        index index.html index.htm;     
+    
+        location / {         
+            # First attempt to server request as file, then         
+            # as directory, then fall back to displaying a 404.          
+            try_files $uri $uri/ /index.html =404;      
+        }
+    }
+    ````
+6. Acesse o diretório <b>/nginx/sites-enabled</b> e utilize o seguinte comando <i>ln -s ../sites-avaiable/TON-Interface</i>
+7. Volte para o diretório do projeto e mova o diretório <b>/dist/TON-Interface</b> para <b>/var/www/</b>
+8. Por fim execute o comando <i>service nginx restart</i>. O projeto deve estar disponível no endereço <b>http://{{ip}}:80</b>
