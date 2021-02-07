@@ -1,6 +1,6 @@
 <div id="control-panel-funcionario" class="fill dark-green d-flex">
   <div>
-    <h1>Funcionários</h1>
+    <h1>Funcionários </h1>
     <button class="text-center w-100" (click)="enableFuncionarioCreation()">Novo funcionário</button>
     <ul *ngIf="funcionarios.length > 0" class="list-group" id="list-tab" role="tablist">
       <li *ngFor="let funcionario of funcionarios; let i = index" class="text-center w-100" (click)="selectFuncionario(i)">Matrícula: {{funcionario.id}} - {{funcionario.nome}}</li>
