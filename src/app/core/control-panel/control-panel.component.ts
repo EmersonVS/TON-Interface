@@ -64,7 +64,18 @@ export class ControlPanelComponent implements OnInit {
     const newFucionario = new Funcionario(this.newFuncionarioForm);
     this.funcionarioService.createFuncionario(newFucionario).subscribe(funcionarioResponse => {
       this.updateList();
+      this.clearNewUserForm();
     })
+  }
+
+  clearNewUserForm() {
+    this.newFuncionarioForm.setValue(
+      {
+        nome: '',
+        cargo: '',
+        idade: '',
+      }
+    )
   }
 
   deleteFuncionario(funcionarioId: number) {
